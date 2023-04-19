@@ -47,10 +47,10 @@ Side information: To use the application in a special environment use `lorem ips
 
 Give instructions on how to collaborate with your project.
 
-> Alastair Hatfield > GitHub aHatfield
-> India Taylor > GitHub indiataylor1
-> Sophia Altaf > GitHub
-> Veera Pagadala > GitHub
+- Alastair Hatfield > GitHub aHatfield
+- India Taylor > GitHub indiataylor1
+- Sophia Altaf > GitHub
+- Veera Pagadala > GitHub
 
 ## FAQs
 
