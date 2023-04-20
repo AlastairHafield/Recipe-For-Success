@@ -1,5 +1,5 @@
 {
-  "name": "challenge-22-redux-store",
+  "name": "Redux-store",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -11,7 +11,7 @@
     "seed": "cd server && npm run seed",
     "heroku-postbuild": "cd client && npm run build"
   },
-  "author": "Juan Carlos Gomez",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
@@ -27,10 +27,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jcgom3/Challenge-22-Redux-Store.git"
+    "url": "git+https://github.com/SHAJLP"
   },
   "bugs": {
-    "url": "https://github.com/jcgom3/Challenge-22-Redux-Store/issues"
+    "url": "https://github.com/SHAJLP"
   },
-  "homepage": "https://github.com/jcgom3/Challenge-22-Redux-Store#readme"
+  "homepage": "https://github.com/SHAJLP"
 }
