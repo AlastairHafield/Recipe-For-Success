@@ -1,3 +1,4 @@
+// import our actions
 import {
   UPDATE_PRODUCTS,
   UPDATE_CATEGORIES,

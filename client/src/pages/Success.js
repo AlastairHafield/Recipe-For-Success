@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/react-hooks';
 import Jumbotron from '../components/Jumbotron';
-import { ADD_ORDER } from '../utils/mutations';
 import { idbPromise } from '../utils/helpers';
+import { ADD_ORDER } from '../utils/mutations';
 
 function Success() {
   const [addOrder] = useMutation(ADD_ORDER);
@@ -20,12 +20,10 @@ function Success() {
           idbPromise('cart', 'delete', item);
         });
       }
-
       setTimeout(() => {
         window.location.assign('/');
       }, 3000);
     }
-
     saveOrder();
   }, [addOrder]);
 
@@ -34,7 +32,7 @@ function Success() {
       <Jumbotron>
         <h1>Success!</h1>
         <h2>Thank you for your purchase!</h2>
-        <h2>You will now be redirected to the home page</h2>
+        <h2>You will now be redirected to the homepage</h2>
       </Jumbotron>
     </div>
   );
