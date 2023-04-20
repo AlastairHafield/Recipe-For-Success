@@ -15,5 +15,11 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+<<<<<<< HEAD
+=======
+  },
+  "dependencies": {
+    "stripe": "^12.1.1"
+>>>>>>> master
   }
 }
