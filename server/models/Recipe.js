@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const productSchema = new Schema({
+const recipeSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -19,18 +19,25 @@ const productSchema = new Schema({
     required: true,
     min: 0.99
   },
-  quantity: {
+  ingedients: {
+    type: String,
+
+  },
+  calories: {
     type: Number,
-    min: 0,
-    default: 0
   },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
     required: true
+  },
+  diteary: {
+    type: Schema.Types.ObjectId,
+    ref: 'Dietary',
+    required: true
   }
 });
 
-const Product = mongoose.model('Product', productSchema);
+const Recipe = mongoose.model('Recipe', recipeSchema);
 
-module.exports = Product;
+module.exports = Recipe;
