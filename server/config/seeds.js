@@ -8,7 +8,7 @@ db.once('open', async () => {
     { name: 'Spices' },
     { name: 'Vegetables' },
     { name: 'Fruit' },
-    { name: 'Meat' }
+    { name: 'Meat' },
     { name: 'Seafood' },
     { name: 'Dairy' },
     { name: 'Dry goods' },
