@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "mern-shopping",
+=======
+  "name": "mern-client",
+>>>>>>> master
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",

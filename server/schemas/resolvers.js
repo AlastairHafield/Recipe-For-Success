@@ -1,5 +1,9 @@
 const { AuthenticationError } = require('apollo-server-express');
+<<<<<<< HEAD
 const { User, Recipe, Category, Order, Dietary } = require('../models');
+=======
+const { User, Product, Category, Order } = require('../models');
+>>>>>>> master
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -8,7 +12,11 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
+<<<<<<< HEAD
     recipes: async (parent, { category, name }) => {
+=======
+    products: async (parent, { category, name }) => {
+>>>>>>> master
       const params = {};
 
       if (category) {
@@ -21,6 +29,7 @@ const resolvers = {
         };
       }
 
+<<<<<<< HEAD
       return await Recipe.find(params).populate('category');
     },
     recipes: async (parent, { _id }) => {
@@ -35,6 +44,17 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: 'orders.recipes',
+=======
+      return await Product.find(params).populate('category');
+    },
+    product: async (parent, { _id }) => {
+      return await Product.findById(_id).populate('category');
+    },
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.products',
+>>>>>>> master
           populate: 'category'
         });
 
@@ -48,7 +68,11 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
+<<<<<<< HEAD
           path: 'orders.recipes',
+=======
+          path: 'orders.products',
+>>>>>>> master
           populate: 'category'
         });
 
@@ -59,6 +83,7 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
+<<<<<<< HEAD
       const order = new Order({ recipes: args.recipes });
       const line_items = [];
 
@@ -69,6 +94,18 @@ const resolvers = {
           name: recipes[i].name,
           description: recipes[i].description,
           images: [`${url}/images/${recipes[i].image}`]
+=======
+      const order = new Order({ products: args.products });
+      const line_items = [];
+
+      const { products } = await order.populate('products');
+
+      for (let i = 0; i < products.length; i++) {
+        const product = await stripe.products.create({
+          name: products[i].name,
+          description: products[i].description,
+          images: [`${url}/images/${products[i].image}`]
+>>>>>>> master
         });
 
         const price = await stripe.prices.create({
@@ -101,10 +138,17 @@ const resolvers = {
 
       return { token, user };
     },
+<<<<<<< HEAD
     addOrder: async (parent, { recipes }, context) => {
       console.log(context);
       if (context.user) {
         const order = new Order({ recipes });
+=======
+    addOrder: async (parent, { products }, context) => {
+      console.log(context);
+      if (context.user) {
+        const order = new Order({ products });
+>>>>>>> master
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
@@ -120,11 +164,18 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+<<<<<<< HEAD
     updateRecipe: async (parent, { _id, description, ingredients, calories }) => {
       // const decrement = Math.abs(quantity) * -1;
       //ToDo: update the recipe
 
       // return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+=======
+    updateProduct: async (parent, { _id, quantity }) => {
+      const decrement = Math.abs(quantity) * -1;
+
+      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+>>>>>>> master
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
