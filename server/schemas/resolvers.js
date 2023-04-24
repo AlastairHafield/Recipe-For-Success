@@ -136,12 +136,18 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
-    updateRecipe: async (parent, { _id, description, ingredients, calories }) => {
-      // const decrement = Math.abs(quantity) * -1;
-      //ToDo: update the recipe
-
-      return await Recipe.findByIdAndUpdate(_id, { $inc: { description: decrement } }, { new: true });
-
+    updateRecipe: async (_, args, { models }) => {
+      const { _id, description, ingredients, calories } = args;
+      try {
+        const updatedRecipe = await models.Recipe.findOneAndUpdate(
+          { _id },
+          { description, ingredients, calories },
+          { new: true }
+        );
+        return updatedRecipe;
+      } catch (error) {
+        throw new Error('Failed to update recipe');
+      }
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
