@@ -1,14 +1,18 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User, Product, Category, Order } = require("../models");
-const { signToken } = require("../utils/auth");
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const { AuthenticationError } = require('apollo-server-express');
+
+const { User, Recipe, Category, Order, Dietary } = require('../models');
+
+const { signToken } = require('../utils/auth');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
     categories: async () => {
       return await Category.find();
     },
-    products: async (parent, { category, name }) => {
+
+    recipes: async (parent, { category, name }) => {
+
       const params = {};
 
       if (category) {
@@ -21,16 +25,23 @@ const resolvers = {
         };
       }
 
-      return await Product.find(params).populate("category");
+
+      return await Recipe.find(params).populate('category');
     },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate("category");
+    recipes: async (parent, { _id }) => {
+      return await Recipe.findById(_id).populate('category');
     },
+    dite: async (parent, { diteary, diteName }) => {
+      return await Dietary.find(diteName).populate(diteary);
+
+    },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: "orders.products",
-          populate: "category",
+          path: 'orders.recipes',
+
+          populate: 'category'
         });
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
@@ -43,8 +54,10 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: "orders.products",
-          populate: "category",
+
+          path: 'orders.recipes',
+
+          populate: 'category'
         });
 
         return user.orders.id(_id);
@@ -54,16 +67,17 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
+      const order = new Order({ recipes: args.recipes });
       const line_items = [];
 
-      const { products } = await order.populate("products");
+      const { recipes } = await order.populate('recipes');
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`],
+      for (let i = 0; i < recipes.length; i++) {
+        const recipe = await stripe.recipes.create({
+          name: recipes[i].name,
+          description: recipes[i].description,
+          images: [`${url}/images/${recipes[i].image}`]
+
         });
 
         const price = await stripe.prices.create({
@@ -96,10 +110,12 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+
+    addOrder: async (parent, { recipes }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
+        const order = new Order({ recipes });
+
 
         await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order },
@@ -119,14 +135,13 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
 
-      return await Product.findByIdAndUpdate(
-        _id,
-        { $inc: { quantity: decrement } },
-        { new: true }
-      );
+    updateRecipe: async (parent, { _id, description, ingredients, calories }) => {
+      // const decrement = Math.abs(quantity) * -1;
+      //ToDo: update the recipe
+
+      return await Recipe.findByIdAndUpdate(_id, { $inc: { description: decrement } }, { new: true });
+
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
