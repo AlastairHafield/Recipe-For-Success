@@ -136,7 +136,7 @@ const resolvers = {
       // const decrement = Math.abs(quantity) * -1;
       //ToDo: update the recipe
 
-      // return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+      return await Recipe.findByIdAndUpdate(_id, { $inc: { description: decrement } }, { new: true });
 
     },
     login: async (parent, { email, password }) => {
