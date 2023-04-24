@@ -1,8 +1,7 @@
-## Table of Contents
-<<<<<<< HEAD
+# PLEASE PUSH CHANGES TO DEVELOP BRANCH THEN ONCE DEVELOP BRANCH IS OK WE PUSH TO MAIN.
 
-=======
->>>>>>> master
+
+## Table of Contents
 1. [General Info](#general-info)
 2. [Technologies](#technologies)
 3. [Installation](#installation)
