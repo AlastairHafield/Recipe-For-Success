@@ -36,5 +36,12 @@ const Reviews = () => {
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
+            </select>
+            </div>
+            <div>
+                <label>Comment</label>
+                <textarea value={comment} onChange=(e.=> setComment(e.target.value))></textarea>
+                
+
 
         </div>
