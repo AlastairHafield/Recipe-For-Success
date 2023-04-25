@@ -4,7 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import mongoose from 'mongoose';
 import axios from 'axios';
-import CORS form 'cors';
+import CORS = 'cors';
 
 import Home from './pages/Home';
 import Detail from './pages/Detail';
