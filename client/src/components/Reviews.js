@@ -40,8 +40,12 @@ const Reviews = () => {
             </div>
             <div>
                 <label>Comment</label>
-                <textarea value={comment} onChange=(e.=> setComment(e.target.value))></textarea>
-                
-
-
+                <textarea value={comment} onChange=(e.=> setComment(e.target.value))></textarea>               
         </div>
+        <button type="submit">Submit Review</button>
+        </form>
+        </div>
+  );
+};
+
+export default Reviews
