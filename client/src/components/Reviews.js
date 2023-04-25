@@ -17,10 +17,18 @@ const Reviews = () => {
   return (
     <div>
         <h1>Leave a Review</h1>
-        <form onSubmit={handleSubmit}></form>
+        <form onSubmit={handleSubmit}>
         <div>
             <label>Name</label>
-            <input type="text" value={name} onChange={e => setName(e.target.value)}
+            <input type="text" value={name} onChange={e => setName(e.target.value)}/>
         </div>
-    </div>
-  )
+    <div>
+        <label> Email</label>
+        <label>Email:</label>
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+        </div>
+        <div>
+            <label> Rating</label>
+            <select value={rating} onChange={e => setEmail(e.target.value)}/>
+        </div>
+        
