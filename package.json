@@ -17,6 +17,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "stripe": "^12.1.1"
   }
 }
