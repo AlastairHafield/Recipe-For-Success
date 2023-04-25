@@ -13,6 +13,7 @@ import Nav from './components/Nav';
 import OrderHistory from './pages/OrderHistory';
 import { Provider } from 'react-redux';
 import store from './utils/store';
+import Reviews from './components/Reviews';
 
 const client = new ApolloClient({
   request: (operation) => {
