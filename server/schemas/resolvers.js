@@ -81,14 +81,14 @@ const resolvers = {
         });
 
         const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
+          recipe: recipe.id,
+          unit_amount: recipes[i].price * 100,
           currency: "usd",
         });
 
         line_items.push({
           price: price.id,
-          quantity: 1,
+          // quantity: 1,
         });
       }
 
