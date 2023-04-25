@@ -10,9 +10,13 @@ module.exports = {
 
     // ["Bearer", "<tokenvalue>"]
     if (req.headers.authorization) {
+<<<<<<< HEAD
 ;
       token = token.split(' ').pop().trim();
 
+=======
+      token = token.split(" ").pop().trim();
+>>>>>>> 6c939bf (apollo issues solved, jwt working, stripe working)
     }
 
     if (!token) {
@@ -23,7 +27,11 @@ module.exports = {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
     } catch {
+<<<<<<< HEAD
       console.log('Invalid token');
+=======
+      console.log("Invalid token");
+>>>>>>> 6c939bf (apollo issues solved, jwt working, stripe working)
     }
 
     return req;
