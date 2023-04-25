@@ -42,7 +42,7 @@ db.once('open', () => {
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/myapp', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/Recipe-For-Success', { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
@@ -66,3 +66,4 @@ app.post('/api/reviews', (req, res) => {
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
