@@ -1,5 +1,6 @@
 import React from "react";
 import Jumbotron from "../components/Jumbotron";
+import "./noMatch.css"; // import the css file for the home page
 
 const NoMatch = () => {
   return (
