@@ -94,13 +94,6 @@ A list of frequently asked questions
    |:--------------|:-------------:|--------------:|
    | text-align left | text-align center | text-align right |
 =======
-Side information: To use the application in a special environment use ```lorem ipsum``` to start
-## Collaboration
-***
-Give instructions on how to collaborate with your project.
-> Maybe you want to write a quote in this part. 
-> Should it encompass several lines?
-> This is how you do it.
 ## FAQs
 ***
 A list of frequently asked questions
