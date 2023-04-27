@@ -2,12 +2,13 @@
 
 
 ## Table of Contents
+
 1. [General Info](#general-info)
 2. [Technologies](#technologies)
 3. [Installation](#installation)
 4. [Collaboration](#collaboration)
 5. [FAQs](#faqs)
-<<<<<<< HEAD
+
 
 ### General Info
 
@@ -35,7 +36,7 @@ A list of technologies used within the project:
 
 A little intro about the installation.
 
-=======
+
 ### General Info
 ***
 Write down general information about your project. It is a good idea to always put a project status in the readme file. This is where you can add it. 
@@ -50,14 +51,15 @@ A list of technologies used within the project:
 ## Installation
 ***
 A little intro about the installation. 
->>>>>>> master
+
 ```
 $ git clone https://example.com
 $ cd ../path/to/the/file
 $ npm install
 $ npm start
+$ npm run develop
 ```
-<<<<<<< HEAD
+
 
 Side information: To use the application in a special environment use `lorem ipsum` to start
 
@@ -93,7 +95,7 @@ A list of frequently asked questions
    | Headline 1 in the tablehead | Headline 2 in the tablehead | Headline 3 in the tablehead |
    |:--------------|:-------------:|--------------:|
    | text-align left | text-align center | text-align right |
-=======
+
 Side information: To use the application in a special environment use ```lorem ipsum``` to start
 ## Collaboration
 ***
@@ -101,6 +103,7 @@ Give instructions on how to collaborate with your project.
 > Maybe you want to write a quote in this part. 
 > Should it encompass several lines?
 > This is how you do it.
+
 ## FAQs
 ***
 A list of frequently asked questions
@@ -117,4 +120,4 @@ Answer to the third question with *italic words*.
 | Headline 1 in the tablehead | Headline 2 in the tablehead | Headline 3 in the tablehead |
 |:--------------|:-------------:|--------------:|
 | text-align left | text-align center | text-align right |
->>>>>>> master
+
