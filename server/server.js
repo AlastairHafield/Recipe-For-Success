@@ -3,6 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const mongoose = require ('mongoose');
 const cors = require ('cors');
+const bodyParser = require ('body-parser');
 
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
@@ -19,11 +20,16 @@ const server = new ApolloServer({
 
  // Enable CORS
  app.use(cors());
+ 
 
  // Connect to MongoDB
  mongoose.connect('mongodb://localhost:27017/Recipe-For-Success', { useNewUrlParser: true })
    .then(() => console.log('MongoDB Connected'))
    .catch(err => console.log(err));
+   mongoose.connect('mongoodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w-majority',{
+    useNewUrlParser:true,
+    useUnifiedToppology:true
+});
  
  // Define Review Model
  const Review = mongoose.model('Review', {
