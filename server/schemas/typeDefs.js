@@ -16,7 +16,7 @@ const typeDefs = gql`
     rating: Int
     comment: String
   }
-  
+
   type Product {
     _id: ID
     name: String
@@ -58,6 +58,7 @@ const typeDefs = gql`
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
     reviews; [Reviews]!
+    rating: [Rating]
   }
 
   type Mutation {
@@ -77,6 +78,7 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
     createReviews(name:String!, email: String!, rating:Int!, comment: String!): Review
+    addRating(name: String!, rating: Int!,comment: String): Rating
   }
 `;
 
