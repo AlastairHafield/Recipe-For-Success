@@ -10,7 +10,13 @@ const typeDefs = gql`
     id; ID!
     user: [User]
   }
-
+  type Rating {
+    id: ID!
+    name: String
+    rating: Int
+    comment: String
+  }
+  
   type Product {
     _id: ID
     name: String
