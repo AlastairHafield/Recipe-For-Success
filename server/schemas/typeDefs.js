@@ -20,6 +20,7 @@ const typeDefs = gql`
     description: String
     ingredients: String
     calories: Int
+    method: String
     image: String
     price: Float
     category: Category
@@ -76,7 +77,7 @@ const typeDefs = gql`
     addOrder(recipes: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
 
-    updateRecipe(_id: ID!, description: String!, ingredients: String! calories: Int!): Recipe
+    updateRecipe(_id: ID!, description: String!, ingredients: String! calories: Int! method: String!): Recipe
 
     login(email: String!, password: String!): Auth
   }
