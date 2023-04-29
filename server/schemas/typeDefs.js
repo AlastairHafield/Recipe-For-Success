@@ -19,7 +19,21 @@ const typeDefs = gql`
     image: String
     price: Float
     category: Category
-    diteary: Dietary
+    dietary: Dietary
+  }
+
+  type Review {
+    id: ID!
+    user: [User]
+
+  }
+
+  type Rating {
+    id: ID!
+    name: String
+    rating: Int
+    comment: String
+
   }
 
   type Order {
@@ -55,6 +69,8 @@ const typeDefs = gql`
     user: User
     order(_id: ID!): Order
     checkout(recipes: [ID]!): Checkout
+    review: [Review] !
+    rating: [Rating]
   }
 
   type Mutation {
