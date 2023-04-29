@@ -1,9 +1,9 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError } = require("apollo-server-express");
 
-const { User, Recipe, Category, Order, Dietary } = require('../models');
+const { User, Recipe, Category, Order, Dietary } = require("../models");
 
-const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const { signToken } = require("../utils/auth");
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
   Query: {
@@ -12,7 +12,6 @@ const resolvers = {
     },
 
     recipes: async (parent, { category, name }) => {
-
       const params = {};
 
       if (category) {
@@ -25,23 +24,18 @@ const resolvers = {
         };
       }
 
-
-      return await Recipe.find(params).populate('category');
+      return await Recipe.find(params).populate("category");
     },
     recipes: async (parent, { _id }) => {
-      return await Recipe.findById(_id).populate('category');
-    },
-    dite: async (parent, { diteary, diteName }) => {
-      return await Dietary.find(diteName).populate(diteary);
-
+      return await Recipe.findById(_id).populate("category");
     },
 
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.recipes',
+          path: "orders.recipes",
 
-          populate: 'category'
+          populate: "category",
         });
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
@@ -54,10 +48,9 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
+          path: "orders.recipes",
 
-          path: 'orders.recipes',
-
-          populate: 'category'
+          populate: "category",
         });
 
         return user.orders.id(_id);
@@ -70,14 +63,13 @@ const resolvers = {
       const order = new Order({ recipes: args.recipes });
       const line_items = [];
 
-      const { recipes } = await order.populate('recipes');
+      const { recipes } = await order.populate("recipes");
 
       for (let i = 0; i < recipes.length; i++) {
         const recipe = await stripe.recipes.create({
           name: recipes[i].name,
           description: recipes[i].description,
-          images: [`${url}/images/${recipes[i].image}`]
-
+          images: [`${url}/images/${recipes[i].image}`],
         });
 
         const price = await stripe.prices.create({
@@ -116,7 +108,6 @@ const resolvers = {
       if (context.user) {
         const order = new Order({ recipes });
 
-
         await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order },
         });
@@ -146,7 +137,7 @@ const resolvers = {
         );
         return updatedRecipe;
       } catch (error) {
-        throw new Error('Failed to update recipe');
+        throw new Error("Failed to update recipe");
       }
     },
     login: async (parent, { email, password }) => {
