@@ -9,11 +9,6 @@ const typeDefs = gql`
     name: String
   }
 
-   type Dietary{
-
-    diteName: String
-   }
-
   type Recipe {
     _id: ID
     name: String
@@ -24,16 +19,12 @@ const typeDefs = gql`
     image: String
     price: Float
     category: Category
-    diteary: Dietary
-
   }
 
   type Order {
     _id: ID
     purchaseDate: String
-
     recipes: [Recipe]
-
   }
 
   type User {
@@ -56,15 +47,11 @@ const typeDefs = gql`
   # Define which queries the front end is allowed to make and what data is returned
   type Query {
     categories: [Category]
-
     recipes(category: ID, name: String): [Recipe]
     recipe(_id: ID!): Recipe
-    dite(diteName): Dietary
     user: User
     order(_id: ID!): Order
     checkout(recipes: [ID]!): Checkout
-
-
   }
 
   type Mutation {
@@ -74,10 +61,21 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    addOrder(recipes: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    
+    addOrder(products: [ID]!): Order
+    updateUser(
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+    ): User
 
-    updateRecipe(_id: ID!, description: String!, ingredients: String! calories: Int! method: String!): Recipe
+    updateRecipe(
+      _id: ID!
+      description: String!
+      ingredients: String!
+      calories: Int!
+    ): Recipe
 
     login(email: String!, password: String!): Auth
   }
