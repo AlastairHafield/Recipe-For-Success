@@ -1,9 +1,11 @@
 const { AuthenticationError } = require("apollo-server-express");
 
-const { User, Recipe, Category, Order, Dietary } = require("../models");
+const { User, Recipe, Category, Order } = require("../models");
 
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+
+const recipees = []; // assume this is an array of recipe objects
 
 // Create the functions that fulfill the queries defined in `typeDefs.js`
 const resolvers = {
@@ -82,7 +84,7 @@ const resolvers = {
 
         line_items.push({
           price: price.id,
-          // quantity: 1,
+
         });
       }
 
@@ -97,6 +99,7 @@ const resolvers = {
       return { session: session.id };
     },
   },
+
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -129,12 +132,35 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
+    addRecipe: (_, { name, description, ingredients, calories, method, image, price, category }, context) => {
+      // check if there is a currently authenticated user
+      if (!context.user) {
+        throw new Error("Unauthorized");
+      }
+
+      const newRecipe = {
+        _id: String(recipes.length + 1),
+        name,
+        description,
+        ingredients,
+        calories,
+        method,
+        image,
+        price,
+        category,
+        createdBy: context.user._id // set the createdBy field to the current user's ID
+      };
+      recipees.push(newRecipe);
+      return newRecipe;
+    },
+
+
     updateRecipe: async (_, args, { models }) => {
-      const { _id, description, ingredients, calories } = args;
+      const { _id, description, ingredients, method, calories } = args;
       try {
         const updatedRecipe = await models.Recipe.findOneAndUpdate(
           { _id },
-          { description, ingredients, calories },
+          { description, ingredients, method, calories },
           { new: true }
         );
         return updatedRecipe;
@@ -161,5 +187,6 @@ const resolvers = {
     },
   },
 };
+
 
 module.exports = resolvers;

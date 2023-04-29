@@ -11,6 +11,9 @@ const recipeSchema = new Schema({
   description: {
     type: String,
   },
+  method: {
+    type: String,
+  },
   image: {
     type: String,
   },
