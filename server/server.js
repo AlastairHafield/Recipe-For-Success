@@ -98,6 +98,11 @@ const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
 
+  db.on("error", (err) => {
+    console.error("MongoDB connection error:", err);
+    process.exit(-1);
+  });
+
   db.once("open", () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);

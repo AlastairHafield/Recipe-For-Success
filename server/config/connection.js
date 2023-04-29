@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/mern-shopping",
@@ -14,6 +15,8 @@ mongoose.connect(
 =======
 mongoose.set("useFindAndModify", false);
 >>>>>>> 3931e9d (trying to fix server)
+=======
+>>>>>>> cce6001 (tryin to fix live server)
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/mern-shopping",
   {
