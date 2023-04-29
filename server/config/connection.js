@@ -19,6 +19,9 @@ mongoose.connect(
 );
 
 module.exports = mongoose.connection;
+<<<<<<< HEAD
 
 //|| 'mongodb://127.0.0.1:27017/mernshopping',
 >>>>>>> 6c939bf (apollo issues solved, jwt working, stripe working)
+=======
+>>>>>>> 384f1e4 (fixed errors in type defs)
