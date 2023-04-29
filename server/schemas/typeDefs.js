@@ -1,6 +1,9 @@
+// importing gql from the apllo-server-express package
 const { gql } = require("apollo-server-express");
 
+// creating the string
 const typeDefs = gql`
+# Define which fields are accessible from the Class model
   type Category {
     _id: ID
     name: String
@@ -12,6 +15,7 @@ const typeDefs = gql`
     description: String
     ingredients: String
     calories: Int
+    method: String
     image: String
     price: Float
     category: Category
@@ -40,6 +44,7 @@ const typeDefs = gql`
     user: User
   }
 
+  # Define which queries the front end is allowed to make and what data is returned
   type Query {
     categories: [Category]
     recipes(category: ID, name: String): [Recipe]
@@ -56,6 +61,7 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
+    
     addOrder(products: [ID]!): Order
     updateUser(
       firstName: String

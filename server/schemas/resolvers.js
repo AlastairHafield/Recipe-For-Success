@@ -5,6 +5,7 @@ const { User, Recipe, Category, Order, Dietary } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
+// Create the functions that fulfill the queries defined in `typeDefs.js`
 const resolvers = {
   Query: {
     categories: async () => {
@@ -26,6 +27,7 @@ const resolvers = {
 
       return await Recipe.find(params).populate("category");
     },
+
     recipes: async (parent, { _id }) => {
       return await Recipe.findById(_id).populate("category");
     },
