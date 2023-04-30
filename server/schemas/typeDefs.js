@@ -96,6 +96,8 @@ const typeDefs = gql`
     ): Recipe
 
     login(email: String!, password: String!): Auth
+    createReviews(name:String!, email: String!, rating:Int!, comment: String!): Review
+    addRating(name: String!, rating: Int!,comment: String): Rating
   }
 `;
 
