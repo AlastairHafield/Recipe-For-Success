@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-=======
-const express = require("express");
-const { ApolloServer } = require("apollo-server-express");
-const path = require("path");
-const { authMiddleware } = require("./utils/auth");
-
-const { typeDefs, resolvers } = require("./schemas");
-const db = require("./config/connection");
-=======
->>>>>>> c17d1b0 (adding additional code to server.js)
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
@@ -19,10 +8,6 @@ const bodyParser = require ('body-parser');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
-<<<<<<< HEAD
-=======
->>>>>>> ace7302 (adding additional code to server.js)
->>>>>>> c17d1b0 (adding additional code to server.js)
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -89,41 +74,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-<<<<<<< HEAD
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-  
-  });
-});
-=======
-// Create a new instance of an Apollo server with the GraphQL schema
-const startApolloServer = async (typeDefs, resolvers) => {
-  await server.start();
-  server.applyMiddleware({ app });
-
-  db.on("error", (err) => {
-    console.error("MongoDB connection error:", err);
-    process.exit(-1);
-  });
-
-  db.once("open", () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(
-        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
-      );
-    });
-  });
-};
-
-// Call the async function to start the server
-startApolloServer(typeDefs, resolvers);
-<<<<<<< HEAD
->>>>>>> c17d1b0 (adding additional code to server.js)
-=======
-=======
 db.once('open', () => {
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
@@ -131,5 +81,3 @@ db.once('open', () => {
   });
   
   });
->>>>>>> 8e4c9b5 (changes)
->>>>>>> 54b9f64 (changes)
