@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import ProductItem from '../ProductItem';
-import { useDispatch, useSelector } from 'react-redux';
-import { UPDATE_PRODUCTS } from '../../utils/actions';
-import { useQuery } from '@apollo/client';
-import { QUERY_PRODUCTS } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
-import spinner from '../../assets/spinner.gif';
+import React, { useEffect } from "react";
+import ProductItem from "../ProductItem";
+import { useDispatch, useSelector } from "react-redux";
+import { UPDATE_RECIPES } from "../../utils/actions";
+import { useQuery } from "@apollo/client";
+import { QUERY_RECIPES } from "../../utils/queries";
+import { idbPromise } from "../../utils/helpers";
+import spinner from "../../assets/spinner.gif";
 
 function ProductList() {
   const dispatch = useDispatch();
@@ -13,55 +13,54 @@ function ProductList() {
 
   const { currentCategory } = state;
 
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const { loading, data } = useQuery(QUERY_RECIPES);
 
   useEffect(() => {
     if (data) {
       dispatch({
-        type: UPDATE_PRODUCTS,
-        products: data.products,
+        type: UPDATE_RECIPES,
+        recipes: data.recipes,
       });
-      data.products.forEach((product) => {
-        idbPromise('products', 'put', product);
+      data.recipes.forEach((recipe) => {
+        idbPromise("recipes", "put", recipe);
       });
     } else if (!loading) {
-      idbPromise('products', 'get').then((products) => {
+      idbPromise("recipes", "get").then((recipes) => {
         dispatch({
-          type: UPDATE_PRODUCTS,
-          products: products,
+          type: UPDATE_RECIPES,
+          recipes: recipes,
         });
       });
     }
   }, [data, loading, dispatch]);
 
-  function filterProducts() {
+  function filterRecipes() {
     if (!currentCategory) {
-      return state.products;
+      return state.recipes;
     }
 
-    return state.products.filter(
-      (product) => product.category._id === currentCategory
+    return state.recipes.filter(
+      (recipe) => recipe.category._id === currentCategory
     );
   }
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
-      {state.products.length ? (
+      <h2>Our Recipes:</h2>
+      {state.recipes.length ? (
         <div className="flex-row">
-          {filterProducts().map((product) => (
+          {filterRecipes().map((recipe) => (
             <ProductItem
-              key={product._id}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
+              key={recipe._id}
+              _id={recipe._id}
+              image={recipe.image}
+              name={recipe.name}
+              price={recipe.price}
             />
           ))}
         </div>
       ) : (
-        <h3>You haven't added any products yet!</h3>
+        <h3>Oops! No recipes found!</h3>
       )}
       {loading ? <img src={spinner} alt="loading" /> : null}
     </div>
