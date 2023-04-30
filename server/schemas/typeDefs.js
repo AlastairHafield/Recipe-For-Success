@@ -62,15 +62,13 @@ const typeDefs = gql`
       password: String!
     ): Auth
     
-    addOrder(recipes: [ID]!): Order
+    addOrder(products: [ID]!): Order
     updateUser(
       firstName: String
       lastName: String
       email: String
       password: String
     ): User
-
-    addRecipe: [Recipe]
 
     updateRecipe(
       _id: ID!
