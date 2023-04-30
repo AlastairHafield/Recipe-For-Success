@@ -61,13 +61,16 @@ const typeDefs = gql`
       password: String!
     ): Auth
 
+
     addOrder(recipes: [ID]!): Order
+
     updateUser(
       firstName: String
       lastName: String
       email: String
       password: String
     ): User
+
 
     addRecipe(
       name: String!
@@ -79,6 +82,7 @@ const typeDefs = gql`
       price: Float!
       categoryId: ID!
     ): recipe
+
 
     updateRecipe(
       _id: ID!

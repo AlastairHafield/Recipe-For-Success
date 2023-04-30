@@ -1,9 +1,10 @@
 const { AuthenticationError } = require("apollo-server-express");
 
-const { User, Recipe, Category, Order } = require("../models");
+const { User, Recipe, Category, Order, Dietary } = require("../models");
 
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+
 
 const recipes = []; // assume this is an array of recipe objects
 
@@ -98,7 +99,6 @@ const resolvers = {
       return { session: session.id };
     },
   },
-
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -167,12 +167,13 @@ const resolvers = {
       return newRecipe;
     },
 
+
     updateRecipe: async (_, args, { models }) => {
-      const { _id, description, ingredients, method, calories } = args;
+      const { _id, description, ingredients, calories } = args;
       try {
         const updatedRecipe = await models.Recipe.findOneAndUpdate(
           { _id },
-          { description, ingredients, method, calories },
+          { description, ingredients, calories },
           { new: true }
         );
         return updatedRecipe;
