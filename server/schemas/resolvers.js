@@ -168,6 +168,21 @@ const resolvers = {
         throw new Error("Failed to update recipe");
       }
     },
+
+
+    addRating: async (parent, { recipeID, rating }) => {
+      const recipe = await recipe.findById(recipeId);
+      if (!recipe) {
+        throw new Error('Recipe not found');
+      }
+
+      recipe.rating.push(rating);
+      await recipe.save();
+
+      return recipe;
+    },
+
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 

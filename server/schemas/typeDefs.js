@@ -21,6 +21,17 @@ const typeDefs = gql`
     category: Category
   }
 
+  type Review {
+    id: ID!
+    user: [User]
+  }
+  type Rating {
+    id: ID!
+    name: String
+    rating: Int
+    comment: String
+  }
+
   type Order {
     _id: ID
     purchaseDate: String
@@ -63,6 +74,7 @@ const typeDefs = gql`
     ): Auth
     
     addOrder(recipes: [ID]!): Order
+    
     updateUser(
       firstName: String
       lastName: String
@@ -80,6 +92,8 @@ const typeDefs = gql`
     ): Recipe
 
     login(email: String!, password: String!): Auth
+    createReviews(name:String!, email: String!, rating:Int!, comment: String!): Review
+    addRating(name: String!, rating: Int!,comment: String): Rating
   }
 `;
 
