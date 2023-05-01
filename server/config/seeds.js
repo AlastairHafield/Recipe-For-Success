@@ -75,6 +75,67 @@ db.once("open", async () => {
       price: 399.99,
       calories: 30,
     },
+
+    {
+      name: "Vegan leek & potato soup",
+      ingredients: "",
+      description: "Try this dairy-free, plant-based twist on the classic leek and potato soup. Ideal for lunch or a starter, top with chopped chives and enjoy with crusty bread",
+      image: "berries.jpeg",
+      category: categories[0]._id,
+      price: 7.99,
+      calories: 170,
+    },
+
+    {
+      name: "Vegan lentil stew",
+      ingredients: "",
+      description: "Providing an impressive five of your 5-a-day in each portion, this filling vegan stew is low calorie and low fat, and also provides fibre, vitamin C, iron and calcium",
+      image: "berries.jpeg",
+      category: categories[0]._id,
+      price: 7.99,
+      calories: 485,
+    },
+
+    {
+      name: "Vegan biryani",
+      ingredients: "",
+      description: "Try our vegan version of a biryani. Our plant-based recipe has raisins and cashews for texture and flavour, and provides all of your 5-a-day",
+      image: "berries.jpeg",
+      category: categories[0]._id,
+      price: 8.99,
+      calories: 500,
+    },
+
+    {
+      name: " Chicken pasta bake ",
+      ingredients: "",
+      description: "Enjoy this gooey cheese and chicken pasta bake for the ultimate weekday family dinner. Serve straight from the dish with a dressed green salad",
+      image: "berries.jpeg",
+      category: categories[5]._id,
+      price: 8.99,
+      calories: 300,
+    },
+
+    {
+      name: " Roast beef with red wine & banana shallots ",
+      ingredients: "",
+      description: "Succulent roast topside of beef, made especially irresistible with a mustard crust, piquant shallots and red wine enriched gravy",
+      image: "berries.jpeg",
+      category: categories[5]._id,
+      price: 10.99,
+      calories: 594,
+    },
+
+    {
+      name: " Homemade Turkish lahmacun ",
+      ingredients: "",
+      description: "Sometimes called 'Turkish pizza', this crispy flatbread topped with spiced mincemeat is a popular street food across the Middle East",
+      image: "berries.jpeg",
+      category: categories[5]._id,
+      price: 8.99,
+      calories: 682,
+    },
+
   ]);
 
   console.log("recipes seeded");
