@@ -5,6 +5,9 @@ const { User, Recipe, Category, Order, Dietary } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
+
+const recipes = []; // assume this is an array of recipe objects
+
 // Create the functions that fulfill the queries defined in `typeDefs.js`
 const resolvers = {
   Query: {
@@ -28,7 +31,7 @@ const resolvers = {
       return await Recipe.find(params).populate("category");
     },
 
-    recipes: async (parent, { _id }) => {
+    recipe: async (parent, { _id }) => {
       return await Recipe.findById(_id).populate("category");
     },
 
@@ -82,7 +85,6 @@ const resolvers = {
 
         line_items.push({
           price: price.id,
-          // quantity: 1,
         });
       }
 
@@ -119,6 +121,7 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
@@ -128,6 +131,42 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+
+    addRecipe: (
+      _,
+      {
+        name,
+        description,
+        ingredients,
+        calories,
+        method,
+        image,
+        price,
+        category,
+      },
+      context
+    ) => {
+      // check if there is a currently authenticated user
+      if (!context.user) {
+        throw new Error("Unauthorized");
+      }
+
+      const newRecipe = {
+        _id: String(recipes.length + 1),
+        name,
+        description,
+        ingredients,
+        calories,
+        method,
+        image,
+        price,
+        category,
+        createdBy: context.user._id, // set the createdBy field to the current user's ID
+      };
+      recipes.push(newRecipe);
+      return newRecipe;
+    },
+
 
     updateRecipe: async (_, args, { models }) => {
       const { _id, description, ingredients, calories } = args;
