@@ -30,7 +30,9 @@ Comeback and enjoy our videos.
 
 ### Screenshots and links:
 
- Deployed link: 
+ Deployed link:  https://recipe-for-success.herokuapp.com/
+
+ 
 
 ![screenshot-of-applicaton](./client/src/assets/img1.png)
 

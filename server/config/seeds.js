@@ -376,14 +376,6 @@ db.once("open", async () => {
       calories: 284,
     },
 
-
-
-
-
-
-
-
-
   ]);
 
   console.log("recipes seeded");
