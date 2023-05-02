@@ -75,6 +75,8 @@ The following commands were used in the installation and execution of this appli
 
 ## Challenges
 
-In the future, we are keen to incorporate cooking videos for each recipe and explain the nutitional values.
+In the future, 
+- we are keen to incorporate cooking videos for each recipe and explain the nutitional values. and
+- crowd-sourcing of the database - users will be allowed to add and update the recipies. 
 
 
