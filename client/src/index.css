@@ -204,8 +204,23 @@ input:focus {
   color: var(--error);
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .card {
     width: 100%;
+  }
+} */
+
+
+@media screen and (max-aspect-ratio: 16/9) {
+  .card {
+      width: auto;
+      height: 100%;
+  }
+}
+
+@media screen and (min-aspect-ratio: 16/9){
+  .card {
+      width: 100%;
+      height: auto;
   }
 }

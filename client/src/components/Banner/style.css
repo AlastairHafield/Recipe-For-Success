@@ -1,4 +1,4 @@
-.banner-container {
+/* .banner-container {
   position: relative;
   width: 100%;
   height: 500px;
@@ -61,4 +61,84 @@
   50% {
     border-color: white;
   }
+} */
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
 }
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+}
+
+.first-letter {
+  color: #0077c0;
+}
+
+.banner-image-smoke-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+}
+
+.banner-text {
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px #000;
+  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid white;
+}
+
+/* Media queries */
+
+/* Small screens (up to 576px) */
+@media (max-width: 576px) {
+  .banner-container {
+    height: 300px;
+  }
+  .banner-text {
+    font-size: 2rem;
+  }
+}
+
+/* Medium screens (between 576px and 992px) */
+@media (min-width: 576px) and (max-width: 992px) {
+  .banner-container {
+    height: 400px;
+  }
+  .banner-text {
+    font-size: 3rem;
+  }
+}
+
+/* Large screens (992px and up) */
+@media (min-width: 992px) {
+  .banner-container {
+    height: 500px;
+  }
+  .banner-text {
+    font-size: 5rem;
+  }
+}
+
+
