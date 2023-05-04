@@ -72,8 +72,9 @@ The following commands were used in the installation and execution of this appli
 
  * AlastairHafield
  * Veera Pagadala
- * Sophia
- * India
+ * Sophia Altaf
+ * India Taylor
+
 
 ## Challenges
 
