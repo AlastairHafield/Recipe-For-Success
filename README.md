@@ -10,7 +10,7 @@
 
 ## Description
 
-The Recipe for Success (RFS) brings together a plethora of recipies covering variety of needs. Here, food enthusiasts can browse and buy the pay-per-view recipies. The recipeis are catagorized into vegan, vegetarian and several free-from sections to facilitate the user choice.
+The Recipe for Success (RFS) brings together a plethora of recipes covering variety of needs. Here, food enthusiasts can browse and buy the pay-per-view recipies. The recipeis are catagorized into vegan, vegetarian and several free-from sections to facilitate the user choice.
 
 The website opens with a navigation bar displaying a) the RFS home button, b) options to sign up or login and c) a button for the cart. 
 
